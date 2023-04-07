@@ -13,6 +13,8 @@ getDiff().then((files) => {
   console.log(dedent(`Your PR diff: ${JSON.stringify(files, undefined, 2)}`));
 });
 
+postCommentInPR();
+
 function getRepoUrl(context: GithubContext): string {
   return `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}`;
 }
@@ -61,4 +63,14 @@ async function getDiff() {
   }
 
   return [];
+}
+
+async function postCommentInPR() {
+  const octokit = getOctokit(ghToken);
+  const result = await octokit.rest.issues.createComment({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    issue_number: context.payload.pull_request?.number || 0,
+    body: "Hello World",
+  });
 }
