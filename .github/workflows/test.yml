@@ -1,6 +1,6 @@
 name: To test run the action
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -27,3 +27,5 @@ jobs:
 
       - name: Run my action
         uses: ./
+        with:
+          ghToken: ${{ secrets.ACTION_SECRET }}
