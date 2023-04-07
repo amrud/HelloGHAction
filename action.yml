@@ -1,0 +1,9 @@
+# this file describes what is this for
+
+name: 'Hello Actions'
+author: 'Ammar'
+description: 'Custom GH action with typescript'
+
+runs: 
+  using: 'node16'
+  main: 'dist/index.js'
