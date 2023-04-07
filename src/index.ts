@@ -1,5 +1,6 @@
 import * as core from "@actions/core";
 import { context, getOctokit } from "@actions/github";
+import dedent from "dedent";
 
 type GithubContext = typeof context;
 
@@ -9,7 +10,7 @@ const ghToken = core.getInput("ghToken");
 greet(inputName);
 
 getDiff().then((files) => {
-  console.log("files", files);
+  console.log(dedent(`Your PR diff: ${JSON.stringify(files, undefined, 2)}`));
 });
 
 function getRepoUrl(context: GithubContext): string {
