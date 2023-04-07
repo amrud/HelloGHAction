@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/amrud/HelloGHAction#readme",
   "devDependencies": {
+    "@types/dedent": "^0.7.0",
     "@types/node": "^18.15.11",
     "typescript": "^5.0.3"
   },
