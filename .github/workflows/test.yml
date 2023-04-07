@@ -1,7 +1,7 @@
 name: To test run the action
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -16,6 +16,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
+          cache: "npm"
+          cache-dependency-path: "package-lock.json"
+
       - name: Install dependency
         run: npm ci
 
