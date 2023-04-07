@@ -98,10 +98,12 @@ async function addLabelToPR() {
 //add badge to README.md
 async function addBadgeToReadme() {
   const octokit = getOctokit(ghToken);
+  //get content of README.md in the current pull_request
   const result = await octokit.rest.repos.getContent({
     owner: context.repo.owner,
     repo: context.repo.repo,
     path: "README.md",
+    issue_number: context.payload.pull_request?.number || 0,
   });
 
   console.log(result);
