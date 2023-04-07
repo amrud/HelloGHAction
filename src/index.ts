@@ -13,8 +13,9 @@ const ghToken = core.getInput("ghToken");
 //   console.log(dedent(`Your PR diff: ${JSON.stringify(files, undefined, 2)}`));
 // });
 
-postCommentInPR();
-addLabelToPR();
+// postCommentInPR();
+// addLabelToPR();
+addBadgeToReadme();
 
 function getRepoUrl(context: GithubContext): string {
   return `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}`;
@@ -85,4 +86,23 @@ async function addLabelToPR() {
     issue_number: context.payload.pull_request?.number || 0,
     labels: ["foo", "bar"],
   });
+
+  await octokit.rest.issues.removeLabel({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    issue_number: context.payload.pull_request?.number || 0,
+    name: "foo",
+  });
+}
+
+//add badge to README.md
+async function addBadgeToReadme() {
+  const octokit = getOctokit(ghToken);
+  const result = await octokit.rest.repos.getContent({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    path: "README.md",
+  });
+
+  console.log(result);
 }
