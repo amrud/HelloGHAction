@@ -4,6 +4,13 @@ name: 'Hello Actions'
 author: 'Ammar'
 description: 'Custom GH action with typescript'
 
+inputs:
+  name:
+    description: 'Name to greet'
+    required: false
+    default: 'JS Marathon Vieweres'
+    type: string
+
 runs: 
   using: 'node16'
   main: 'dist/index.js'
