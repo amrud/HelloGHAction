@@ -1,16 +1,28 @@
 import * as core from "@actions/core";
-import * as github from "@actions/github";
+import { context } from "@actions/github";
+
+type GithubContext = typeof context;
 
 const inputName = core.getInput("name");
 
 greet(inputName);
 
-function getRepoUrl(): string {
-  return `${github.context.serverUrl}/${github.context.repo.owner}/${github.context.repo.repo}`;
+function getRepoUrl(context: GithubContext): string {
+  return `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}`;
 }
 
 function greet(name: string) {
-  console.log(`hello ${name} - ${getRepoUrl()}`);
+  console.log(`hello ${name} - ${getRepoUrl(context)}`);
+
+  //console log more info from context
+  console.log("context", context);
+  //   console.log("action", context.action);
+  //   console.log("workflow", context.workflow);
+  //   console.log("apiUrl", context.apiUrl);
+  //   console.log("actor", context.actor);
+  //   console.log("eventName", context.eventName);
+  //   console.log("job", context.job);
+
   core.summary
     .addHeading("My action summary")
     .addTable([
