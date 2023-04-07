@@ -28,4 +28,4 @@ jobs:
       - name: Run my action
         uses: ./
         with:
-          name: 'Testing'
+          name: "Github Actions"
