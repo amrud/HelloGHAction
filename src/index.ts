@@ -1,11 +1,16 @@
 import * as core from "@actions/core";
+import * as github from "@actions/github";
 
 const inputName = core.getInput("name");
 
 greet(inputName);
 
+function getRepoUrl(): string {
+  return `${github.context.serverUrl}/${github.context.repo.owner}/${github.context.repo.repo}`;
+}
+
 function greet(name: string) {
-  console.log(`hello ${name}`);
+  console.log(`hello ${name} - ${getRepoUrl()}`);
   core.summary
     .addHeading("My action summary")
     .addTable([
