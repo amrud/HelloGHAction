@@ -1,6 +1,6 @@
 name: To test run the action
 on:
-  push:
+  pull_request:
     branches:
       - main
 
