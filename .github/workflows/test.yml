@@ -28,4 +28,4 @@ jobs:
       - name: Run my action
         uses: ./
         with:
-          ghToken: ${{ secrets.GITHUB_TOKEN }}
+          ghToken: ${{ secrets.ACTION_SECRET }}
