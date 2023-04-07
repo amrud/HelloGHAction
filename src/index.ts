@@ -1,11 +1,22 @@
-import { getInput } from "@actions/core";
+import * as core from "@actions/core";
 
-const inputName = getInput("name")
+const inputName = core.getInput("name");
 
-greet(inputName)
+greet(inputName);
 
-
-
-function greet(name: string){
-    console.log(`hello ${name}`);
+function greet(name: string) {
+  console.log(`hello ${name}`);
+  core.summary
+    .addHeading("My action summary")
+    .addTable([
+      [
+        { data: "File", header: true },
+        { data: "Result", header: true },
+      ],
+      ["foo.js", "Pass ✅"],
+      ["bar.js", "Fail ❌"],
+      ["test.js", "Pass ✅"],
+    ])
+    .addLink("View staging deployment!", "https://github.com")
+    .write();
 }
