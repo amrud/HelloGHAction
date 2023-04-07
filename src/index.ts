@@ -18,5 +18,11 @@ function greet(name: string) {
       ["test.js", "Pass ✅"],
     ])
     .addLink("View staging deployment!", "https://github.com")
+    .addDetails("View logs", "This is a log")
+    .addBreak()
+    .addList(["foo", "bar", "baz"])
+    .addQuote("This is a quote")
+    .addSeparator()
+    .addEOL()
     .write();
 }
