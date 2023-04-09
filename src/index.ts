@@ -96,10 +96,10 @@ async function addLabelToPR() {
   
    const client = new github.GitHub(githubToken);
     await client.issues.addLabels({
-      ["foo"],
-      context.repo.owner,
-      context.repo.repo,
-      issue_number: github.context.issue.number || 0
+      labels: ["foo"],
+      owner:context.repo.owner,
+      repo: context.repo.repo,
+      issue_number: issue_number: github.context.issue.number || 0
     });
 }
 
