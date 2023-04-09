@@ -27,5 +27,3 @@ jobs:
 
       - name: Run my action
         uses: ./
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

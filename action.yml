@@ -14,6 +14,7 @@ inputs:
     description: "Token to access github api"
     required: false
     type: string
+    default: ${{ github.token }}
 
 runs:
   using: "node16"
