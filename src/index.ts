@@ -78,7 +78,7 @@ async function postCommentInPR() {
 
 //add label to the PR
 async function addLabelToPR() {
-  const githubToken = core.getInput("github_token");
+  const githubToken = core.getInput("token");
   const octokit = getOctokit(githubToken);
   const result = await octokit.rest.issues.addLabels({
     owner: context.repo.owner,
