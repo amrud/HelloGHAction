@@ -4,7 +4,7 @@ import { context, getOctokit } from "@actions/github";
 type GithubContext = typeof context;
 
 const inputName = core.getInput("name");
-const ghToken = core.getInput("ghToken");
+const ghToken = core.getInput("token");
 
 // greet(inputName);
 
@@ -78,8 +78,7 @@ async function postCommentInPR() {
 
 //add label to the PR
 async function addLabelToPR() {
-  const githubToken = core.getInput("token");
-  const octokit = getOctokit(githubToken);
+  const octokit = getOctokit(ghToken);
   const result = await octokit.rest.issues.addLabels({
     owner: context.repo.owner,
     repo: context.repo.repo,

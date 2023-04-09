@@ -10,7 +10,7 @@ inputs:
     required: false
     default: "JS Marathon Vieweres"
     type: string
-  ghToken:
+  token:
     description: "Token to access github api"
     required: false
     type: string
