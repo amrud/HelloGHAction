@@ -1,6 +1,5 @@
 import * as core from "@actions/core";
 import { context, getOctokit } from "@actions/github";
-import dedent from "dedent";
 
 type GithubContext = typeof context;
 
@@ -79,28 +78,21 @@ async function postCommentInPR() {
 
 //add label to the PR
 async function addLabelToPR() {
-  const githubToken = core.getInput('github_token');
-//   const result = await octokit.rest.issues.addLabels({
-//     owner: context.repo.owner,
-//     repo: context.repo.repo,
-//     issue_number: context.payload.pull_request?.number || 0,
-//     labels: ["foo", "bar"],
-//   });
+  const githubToken = core.getInput("github_token");
+  const octokit = getOctokit(githubToken);
+  const result = await octokit.rest.issues.addLabels({
+    owner: context.repo.owner,
+    repo: context.repo.repo,
+    issue_number: context.payload.pull_request?.number || 0,
+    labels: ["foo", "bar"],
+  });
 
-//   await octokit.rest.issues.removeLabel({
-//     owner: context.repo.owner,
-//     repo: context.repo.repo,
-//     issue_number: context.payload.pull_request?.number || 0,
-//     name: "foo",
-//   });
-  
-   const client = new github.GitHub(githubToken);
-    await client.issues.addLabels({
-      labels: ["foo"],
-      owner:context.repo.owner,
-      repo: context.repo.repo,
-      issue_number: issue_number: github.context.issue.number || 0
-    });
+  //   await octokit.rest.issues.removeLabel({
+  //     owner: context.repo.owner,
+  //     repo: context.repo.repo,
+  //     issue_number: context.payload.pull_request?.number || 0,
+  //     name: "foo",
+  //   });
 }
 
 //add badge to README.md
